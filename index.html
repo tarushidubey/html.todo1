@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>TODO-LIST</title>
+    <link rel="stylesheet" href="todo.css">
+
+    <script src="https://kit.fontawesome.com/f831533d8c.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<div class="container">
+    <h1><span class="title"><i class="fas fa-clipboard-list"></i></span></h1>
+    <div class="inputdiv">
+        <input type="text" class="input" placeholder="enter here...">
+        <button class="add"><i class="fas fa-plus"></i></button>
+    </div>
+    <div class="container2">
+
+    </div>
+    <div class="button_cont"aling="center" ><a class="remove_btn" onclick="removeAll()">remove all</a></div>
+</div>
+<script>
+    var container=document.querySelector('.conatiner2');
+var value1=document.querySelector('.input');
+var add1=document.querySelector('.add');
+
+class item{
+    constructor(name)
+    {
+        this.create(name);
+    }
+    create(name)
+    {
+        var l1=document.createElement('div');
+        l1.classList.add('item');
+
+        var input=document.createElement('input');
+        input.type="text";
+        input.disabled=true;
+        input.value=name;
+        input.classList.add('item_input');
+
+        var remove=document.createElement('button');
+        remove.classList('remove');
+        remove.innerHTML='<i class="fas fa-trash"></i>';
+        remove.addEventListener('click',()=>this.remove(l1));
+
+        container.appendChild(l1);
+
+        l1.appendChild(input);
+
+        l1.appendChild(remove);
+
+    }
+    remove(l1){
+        container.removeChild(l1);
+    }
+}
+
+add1.addEventListener('click',check);
+window.addEventListener('keydown',(e)=>{
+    if(e.which==13){
+        check();
+    }
+})
+
+function check(){
+    if(value1.value!=""){
+        new item(value1.value);
+        value1.value="";
+    }
+}
+
+function removeAll(){
+    document.querySelector('.conatiner2'),innerHTML="";
+}
+</script>
+</body>
+
+</html>
